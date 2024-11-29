@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+        .product-list {
+            width: 70%;
+            padding: 20px;
+            background-color: #438a90;
+        }
+        .items-added {
+            width: 30%;
+            padding: 20px;
+            background-color: #21a990;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .product-item {
+            background-color: rgba(255, 255, 255, 0.775);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        .product-item button {
+            border-radius: 5px;
+            width: 6rem;
+            background: #41b9a3;
+            cursor: pointer;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .Cart-products {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .Cart-products img {
+            width: 50px;
+            height: auto;
+        }
+        .Cart-products button {
+            width: 80px;
+            background-color: #ff4d4d;
+            cursor: pointer;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-list">
+        <h2>Product List</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="camera1.jfif" alt="Camera">
+                <p class="price">$40</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-item">
+                <img src="Headphone.jfif" alt="Headphone">
+                <p class="price">$50</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-item">
+                <img src="Laptop.jfif" alt="Laptop">
+                <p class="price">$90</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Add more products as needed -->
+            <div class="product-item">
+                <img src="makeup.jfif" alt="Product 4">
+                <p class="price">$20</p>
+               <button class="add-to-cart" >Add to Cart</button> 
+            </div>
+            <div class="product-item">
+                <img src="watch.jfif" alt="Product 5">
+                <p class="price">$10</p>
+               <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="items-added">
+        <h2>Products Added</h2>
+        <div id="cart"></div>
+    </div>
+
+    <script>
+
+        // Static Approach (Pre-Written HTML):  *********JUST FOR LEARNING-PURPOUSES************
+
+        // Select all 'Add to Cart' buttons
+        const cartbtns=document.querySelectorAll('.add-to-cart');
+        const cartSection = document.getElementById('cart');
+
+        cartbtns.forEach(element => {
+
+            element.addEventListener('click',function(){
+               const productitem=element.parentElement;
+                const Productimage=productitem.querySelector('img').src;     // *****---IMPORTANT CONCEPT SELECTING AN ELEMENT AND SELECTING ITS SUBPARTS
+                const Productname=productitem.querySelector('.price').textContent;
+                const Productprice=document.querySelector('img').alt;
+                // CREATING ADDED CART PRODUCTS ELEMENTS 
+                const cartProduct=document.createElement('div');
+                cartProduct.classList.add('Cart-products');
+                const removebtn=document.createElement('button');
+
+  const pname=document.createElement('p');
+  const img=document.createElement('img');
+  const Price=document.createElement('p');
+  pname.textContent=Productname;
+  img.src=Productimage;
+  Price.textContent=Productprice;
+
+  cartProduct.appendChild(img);
+  cartProduct.appendChild(pname);
+  cartProduct.appendChild(Price);
+  cartProduct.appendChild(removebtn);
+  cartSection.appendChild(cartProduct);
+  removebtn.addEventListener('click', function() {
+                    cartProduct.remove();
+                });
+
+            });
+            
+        });
+    </script>
+</body>
+</html>
